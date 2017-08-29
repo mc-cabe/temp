@@ -17,21 +17,25 @@ below and in the assignment. -->
         var city = $('#city').val().replace(/\s+/g, '');
         console.log(city);
         var APPID = '45fa4074c90fdf5a385e3c3e64ed670c';
-        var path = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',us&&appid=' + APPID;
+        var path = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',uk&&appid=' + APPID;
         // your code here (build up your url)
         console.log(path);
         $('.response').html('Loading...');
         $.ajax({
           type: 'GET',
           url: path,
-          contentType: 'application/json; charset=utf-8',
+
           success: function(data) {
             console.log(data);
-            var html = '<strong>' + City + '</strong>';
+
+            var farenheit = ((data.main.temp - 273.15) * 1.8) + 32;
+
+            var html = '<strong>' + $('#city').val() + '</strong>';
             html += '<ul>';
-            html += '<li>' + 'Temperature: ';
+            html += '<li>' + 'Temperature: ' + Math.floor(farenheit * 10) / 10 + " ℉";
             html += '</li> </ul>';
             console.log(html);
+
             $('.response').html(html);
           },
           error: function(status, error) {
@@ -54,12 +58,8 @@ below and in the assignment. -->
 <body>
   <!-- <form id="weather_form" method="get">
     Loaction: <input type="text" id="location" name="location" value="san jose"><br>
-
     <input type="submit" value="Search Weather">
-
   </form>
-
-
   <div id='response'>Enter Location
   </div> -->
 
@@ -72,8 +72,9 @@ below and in the assignment. -->
 
     </div>
     <br>
-    <div id='response'>Enter Location
-    </div>
+    <!-- <div id='response'>Enter Location</div> -->
+    <!-- WR: Change to class instead of id -->
+    <div class='response'>Enter Location</div>
 
 
   </form>
