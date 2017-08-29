@@ -24,10 +24,13 @@ below and in the assignment. -->
         $.ajax({
           type: 'GET',
           url: path,
-          contentType: 'application/json; charset=utf-8',
+          // WR: Remove this
+          // contentType: 'application/json; charset=utf-8',
           success: function(data) {
             console.log(data);
-            var html = '<strong>' + City + '</strong>';
+            // var html = '<strong>' + City + '</strong>';
+            // WR: Lowercase 'city'
+            var html = '<strong>' + city + '</strong>';
             html += '<ul>';
             html += '<li>' + 'Temperature: ';
             html += '</li> </ul>';
@@ -72,8 +75,9 @@ below and in the assignment. -->
 
     </div>
     <br>
-    <div id='response'>Enter Location
-    </div>
+    <!-- <div id='response'>Enter Location</div> -->
+    <!-- WR: Change to class instead of id -->
+    <div class='response'>Enter Location</div>
 
 
   </form>
